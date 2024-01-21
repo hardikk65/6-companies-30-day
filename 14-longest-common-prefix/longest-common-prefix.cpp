@@ -2,7 +2,7 @@ class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
 
-        map <string,int> str;
+        // map <string,int> str;
 
         int str_min = INT_MAX;
 
@@ -13,23 +13,24 @@ public:
         }
 
         for(int window = str_min; window >= 0;window--){
-            str[strs[0].substr(0,window)]++;
+            string check = strs[0].substr(0,window);
+            int count = 1;
 
             cout<<strs[0].substr(0,window)<<endl;
 
             for(int p = 1; p < strs.size();p++){
-                if(str[strs[p].substr(0,window)] == 0){
+                if(strs[p].substr(0,window) != check){
                     break;
                 }
                 else{
-                    str[strs[p].substr(0,window)]++;
+                    count++;
                 }
             }
 
-            if(str[strs[0].substr(0,window)] == strs.size()){
-                return strs[0].substr(0,window);
+            if(count == strs.size()){
+                return check;
             }
-            str.clear();
+            // str.clear();
 
         }
 
